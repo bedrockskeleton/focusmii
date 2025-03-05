@@ -1,0 +1,117 @@
+.message {
+    font-weight: 600;
+    color: blue;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NanumGothicCoding', monospace;
+}
+
+body {
+    position: relative;
+    background: radial-gradient(100% 100% at 50% 0%, #F2F2F2 0%, #F0F0F0 100%);
+}
+
+.taskbar {
+    position: fixed;
+    right: 0px;
+    left: 0px;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    gap: 20px;
+    width: 100%;
+    height: 70px;
+    left: 0;
+    top: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 95%, rgba(255, 255, 255, 0.35) 100%),
+                linear-gradient(180deg, rgba(174, 174, 174, 0.64) 0%, rgba(245, 245, 245, 0.64) 100%);
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.35);
+}
+
+.content {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    position: fixed;
+    left: -2vw;
+    right: -2vw;
+    bottom: 0px;
+    top: 70px;
+    flex-direction: row;
+}
+.timer, .speaker {
+    width: 36vw;
+    height: 100%;
+}
+.timer > svg, .speaker > svg {
+    height: auto;
+    max-height: calc(100vh-70px);
+    width: auto;
+}
+.queue {
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 32vw;
+}
+.queue > svg {
+    height: auto;
+    width: auto;
+    margin: 0px;
+    margin-top: -50%;
+}
+
+.player {
+    position: fixed;
+    left: calc(50vw - 300px);
+    right: calc(50vw - 300px);
+    bottom: 0;
+    height: 180px;
+}
+.player > svg {
+    height: 180px;
+    width: auto;
+}
+
+h1, h2, h3{
+    background: linear-gradient(180deg, #505050 0%, #737373 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 48px;
+}
+h2 {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 36px;
+}
+.signup {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 36px;
+    background: radial-gradient(30.91% 30.91% at 50.07% -0.91%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%), radial-gradient(95.27% 100.91% at 50.07% -0.91%, #48F5FF 0%, #00D3DF 33%, #00D3DF 66.5%, #0012DF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+.spacer {
+    width: auto;
+    height: auto;
+    flex-grow: 1;
+}

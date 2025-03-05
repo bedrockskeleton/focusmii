@@ -1,0 +1,159 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title id="title">FocusMii</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'focus_timer/icon/mainfavicon.png' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+        <link rel='stylesheet' href="{% static 'focus_timer/style.css'%}">
+        <script src="{% static 'focus_timer/app.js' %}"></script>
+    </head>
+    <body>
+    <div class="main">
+        <div class="timer">
+            <svg height="75vh" viewBox="0 0 940 940" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g filter="url(#filter0_d_115_181)">
+                    <circle cx="470" cy="460" r="420" fill="white" fill-opacity="0.01" shape-rendering="crispEdges"/>
+                    </g>
+                    <circle cx="470" cy="460" r="420" fill="url(#paint0_radial_115_181)"/>
+                    <circle cx="470" cy="460" r="420" fill="url(#paint1_radial_115_181)"/>
+                    <circle cx="470" cy="460" r="378" fill="url(#paint2_radial_115_181)"/>
+                    
+                    <path id="focusArc" fill="#5EFF00" opacity="1" />
+                    <path id="restArc" fill="#FFFF00" opacity="1" />
+
+                    <use href="{% static 'focus_timer/svg/ticks.svg'%}#ticks"></use>
+                    <use href="{% static 'focus_timer/svg/dial.svg'%}#dial" style=
+                    "transform: rotate(0deg); transform-origin: 50% 50%;"></use>
+                    <mask id="mask0_115_181" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="50" y="40" width="840" height="840">
+                    <circle cx="470" cy="460" r="420" fill="url(#paint4_radial_115_181)"/>
+                    <circle cx="470" cy="460" r="420" fill="url(#paint5_radial_115_181)"/>
+                    </mask>
+                    <g mask="url(#mask0_115_181)">
+                    <ellipse cx="470" cy="210" rx="500" ry="250" fill="url(#paint6_linear_115_181)"/>
+                    <circle cx="470" cy="460" r="378" fill="url(#paint7_radial_115_181)" fill-opacity="0.2"/>
+                    </g>
+                    <defs>
+                    <filter id="filter0_d_115_181" x="0" y="0" width="940" height="940" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+                    <feOffset dy="10"/>
+                    <feGaussianBlur stdDeviation="25"/>
+                    <feComposite in2="hardAlpha" operator="out"/>
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0"/>
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_115_181"/>
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_115_181" result="shape"/>
+                    </filter>
+                    <radialGradient id="paint0_radial_115_181" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 40) rotate(90) scale(840)">
+                    <stop offset="0.496" stop-color="#AEAEAE" stop-opacity="0.8"/>
+                    <stop offset="1" stop-color="#F5F5F5" stop-opacity="0.8"/>
+                    </radialGradient>
+                    <radialGradient id="paint1_radial_115_181" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 460) rotate(90) scale(420)">
+                    <stop offset="0.95" stop-color="white" stop-opacity="0"/>
+                    <stop offset="1" stop-color="white" stop-opacity="0.7"/>
+                    </radialGradient>
+                    <radialGradient id="paint2_radial_115_181" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 82) rotate(90) scale(756)">
+                    <stop offset="0.496" stop-color="#E6E6E6"/>
+                    <stop offset="1" stop-color="#F5F5F5"/>
+                    </radialGradient>
+                    <radialGradient id="paint3_radial_115_181" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 460) scale(65)">
+                    <stop offset="0.8" stop-opacity="0"/>
+                    <stop offset="1" stop-opacity="0.9"/>
+                    </radialGradient>
+                    <radialGradient id="paint4_radial_115_181" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 40) rotate(90) scale(840)">
+                    <stop offset="0.496" stop-color="#AEAEAE" stop-opacity="0.8"/>
+                    <stop offset="1" stop-color="#F5F5F5" stop-opacity="0.8"/>
+                    </radialGradient>
+                    <radialGradient id="paint5_radial_115_181" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 460) rotate(90) scale(420)">
+                    <stop offset="0.95" stop-color="white" stop-opacity="0"/>
+                    <stop offset="1" stop-color="white" stop-opacity="0.7"/>
+                    </radialGradient>
+                    <linearGradient id="paint6_linear_115_181" x1="470" y1="-40" x2="470" y2="460" gradientUnits="userSpaceOnUse">
+                    <stop offset="0.5" stop-color="#F5F5F5" stop-opacity="0.5"/>
+                    <stop offset="1" stop-color="#F5F5F5" stop-opacity="0.04"/>
+                    </linearGradient>
+                    <radialGradient id="paint7_radial_115_181" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(470 460) rotate(90) scale(378)">
+                    <stop offset="0.92" stop-opacity="0"/>
+                    <stop offset="1" stop-opacity="0.9"/>
+                    </radialGradient>
+                    </defs>
+            </svg>
+            <div class="digital">
+                <div><span id="minutes">25</span>:<span id="seconds">00</span></div>
+            </div>
+            <div class="controls">
+                <button class="button" onclick="startMainTimer()">Start</button>
+                <button class="button" onclick="pauseTimer()">Pause</button>
+                <button class="button" onclick="resetTimer()">Reset</button>
+            </div>
+            
+        </div>
+        <div class="container">
+            {% if user.is_authenticated%}
+                {% if editable %}
+                <form id="pomodoroForm" method="POST" action="{% url 'add' user.id %}">
+                    {% csrf_token %}
+                    {{form}}
+                    <button type="submit">Save</button>
+                </form>
+                {% else %}
+
+                {% if timers is None %}
+                <div>
+                    <h2>No timers yet...</h2>
+                </div>
+
+                {% else %}
+
+                {% for timer in timers %}
+                    {% if timer.uuid == user.id %}
+                        <div class="floppy" onclick="pushITimer('{{ timer.id }}')">
+                            <svg width="20vw" viewBox="0 0 882 882">
+                                <use href="{% static 'focus_timer/svg/floppy.svg'%}#floppy"></use>
+                                
+                            </svg>
+                            <div class="floppy-content">
+                                <h2>{{ timer.title }}</h2>
+                                <span id="minutes{{ timer.id }}">Focus: {{ timer.focus }} min</span><br>
+                                <span id="seconds{{ timer.id }}">Rest: {{ timer.rest }} min</span><br>
+                                <span id="initialFocus{{ timer.id }}" 
+                                        style="display: none;">{{ timer.focus }}</span>
+                                <span id="initialRest{{ timer.id }}" 
+                                        style="display: none;">{{ timer.rest }}</span>
+                            </div>
+                        </div>
+                    {%endif%}
+                {% endfor %}
+                {% endif %}
+                {% endif %}
+        </div>
+            {% else %}
+            <div class="intro">
+                <p>
+                    FocusMii is a pomodoro timer that features nostalgic skeumorphic design and sounds. The large analog timer tracks your focus time in green and your rest time in yellow. You'll hear a <i>*whoom*</i> when its time to rest, and a <i>*beep*</i> when the timer is complete. <a href="{% url 'login' %}" class="signup">Login</a> to create and manage custom timers. Created by Brock Skelton for CSC V.
+                </p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="navbar">
+        <h1>FocusMii</h1>
+        {% if user.is_authenticated %}
+        <a class="nav-link mx-3" href="{% url 'add'  user.id %}"><h2>New Timer</h2></a>
+        <div class="spacer"></div>
+        <a class="signup" href="{% url 'logout' %}"><h2 class="signup">Logout</h2></a>
+        {% else %}
+        <div class="spacer"></div>
+        <a href="{% url 'login' %}"><h2 class="signup">Login</h2></a>
+        {% endif %}
+        <svg height="42px" id="account"><use href="{% static 'focus_timer/svg/account.svg'%}#account"></use></svg>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+            crossorigin="anonymous"></script>
+  </body>
+</html>

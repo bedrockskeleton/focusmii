@@ -1,0 +1,9 @@
+<svg id="dial" viewBox="0 0 940 940" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="470" cy="460" r="75" transform="rotate(90 470 460)" fill="#505050"/>
+    
+    <circle cx="470" cy="460" r="65" transform="rotate(90 470 460)" fill="#858585"/>
+    <circle cx="470" cy="460" r="65" transform="rotate(90 470 460)" fill="url(#paint3_radial_115_181)" fill-opacity="0.2"/>
+</svg>
+
+<path d="M417.033 407L470.066 460.033L417.033 513.066L364 460.033L417.033 407Z" fill="#505050"/>
+<path d="M522.967 407L576 460.033L522.967 513.066L469.934 460.033L522.967 407Z" fill="#505050"/>
