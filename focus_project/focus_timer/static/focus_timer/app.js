@@ -1,4 +1,4 @@
-// Main pomodoro timer
+// Timer variables
 let mainTimer;
 let mainSeconds = 0;
 let mainMinutes = 25;
@@ -6,7 +6,7 @@ let pushedFocus = 25;
 let pushedRest = 5;
 let mainIsTimerRunning = false;
 let mainIsFocus = true
-
+// General variables
 const alarm = new Audio('/static/focus_timer/sound/alarm.wav'); // Play when timer complete
 const rest = new Audio('/static/focus_timer/sound/rest.wav'); // Play when time for rest
 
@@ -127,4 +127,21 @@ function updateArc(arc, degree) {
       Z
     `;
     arc.setAttribute("d", pathData);
+}
+
+function changeColor () {
+    const colorForm = document.getElementById("id_color");
+    const formBackground = document.getElementById("formBackground");
+    let backString = formBackground.getAttribute("fill")
+    const pound = backString.indexOf("#")
+    let color = parseInt(colorForm.value);
+    const maxColors = 6;
+    color += 1;
+    if (color >= maxColors) {
+        color = 0;
+    }
+    console.log(color);
+    console.log(backString.slice(0, pound).concat("#back",color,")"));
+    colorForm.value = color;
+    formBackground.setAttribute("fill", backString.slice(0, pound).concat("#back",color,")"))
 }

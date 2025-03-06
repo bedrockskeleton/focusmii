@@ -17,12 +17,13 @@ from .models import Timers
 class PomodoroForm(forms.ModelForm):
     class Meta:
         model = Timers
-        fields = ['title','focus','rest','priority']
+        fields = ['title','focus','rest','color']
         widgets = {
-            'title': forms.TextInput(attrs={'required': 'required'}),
-            'focus': forms.NumberInput(attrs={'required': 'required'}),
-            'rest': forms.NumberInput(attrs={'required': 'required'}),
-            'priority': forms.NumberInput(attrs={'required': 'required'}),
+            'title': forms.TextInput(attrs={'maxlength': 14, 'required': 'required'}),
+            'focus': forms.NumberInput(attrs={'required': 'required', 'min': 0}),
+            'rest': forms.NumberInput(attrs={'required': 'required', 'min': 0}),
+            #'priority': forms.NumberInput(attrs={'required': 'required'}),
+            'color': forms.NumberInput(attrs={'required': 'required', 'style': 'display: none;'}),
         }
 
     def clean(self):

@@ -20,3 +20,4 @@ class Timers(models.Model):
     rest = models.IntegerField(default=5) # Rest time in minutes
     uuid = models.IntegerField(default=0)
     priority = models.IntegerField(default=0)
+    color = models.IntegerField(default=0) # 0-5 for each color profile

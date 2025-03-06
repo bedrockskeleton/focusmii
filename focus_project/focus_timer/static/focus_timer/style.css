@@ -1,8 +1,9 @@
 * {
     font-family: 'Nanum Gothic Coding', monospace;
+    scrollbar-width: none;
 }
 body {
-    background: radial-gradient(100% 100% at 50% 0%, #F2F2F2 0%, #F0F0F0 100%);
+    background: #F5F5F5;
 }
 body.dark {
     background: radial-gradient(100% 100% at 50% 0%, #3c3c3c 0%, #3c3c3c 100%);
@@ -165,7 +166,11 @@ a {
     padding: 20px;
     border-radius: 20px;
 }
-#pomodoroForm, .intro {
+#pomodoroForm {
+    margin: 0 auto;
+    height: fit-content;
+}
+.intro {
     margin: 0 auto;
     max-width: 30vw;
     min-width: 400px;
@@ -179,11 +184,16 @@ a {
     font-size: 18pt;
 }
 
-.loginbox > form > div, #pomodoroForm > div {
+.loginbox > form > div {
     display: flex;
     flex-direction: row;
+    padding: 10px 15px;
+    background: radial-gradient(100% 100% at 50% 0%, white 0%, #F0F0F0 100%);
+    box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.35);
+    margin: 10px 0px;
+    border-radius: 20px;
 }
-input.form-control, #pomodoroForm > div > input {
+input.form-control {
     flex-grow: 1;
     width: auto;
     background: radial-gradient(30.91% 30.91% at 50.07% -0.91%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%), radial-gradient(95.27% 100.91% at 50.07% -0.91%, #48F5FF 0%, #00D3DF 33%, #00D3DF 66.5%, #0012DF 100%);
@@ -203,13 +213,6 @@ svg.loginaccount {
     top: 20px;
     height: 60px;
     width: 60px;
-}
-form > div {
-    padding: 10px 15px;
-    background: radial-gradient(100% 100% at 50% 0%, white 0%, #F0F0F0 100%);
-    box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.35);
-    margin: 10px 0px;
-    border-radius: 20px;
 }
 form > div > input {
     border: none;
@@ -235,7 +238,6 @@ button:hover, input.button:hover {
 button:active, input.button:active {
     background: radial-gradient(30.91% 30.91% at 50.07% -0.91%, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0) 100%), radial-gradient(95.27% 100.91% at 50.07% -0.91%, #48F5FF 0%, #00D3DF 33%, #00D3DF 66.5%, #48F5FF 100%);
 }
-
 
 .spacer {
     width: auto;
@@ -273,4 +275,17 @@ div.floppy-content h2 {
     line-height: 20px;
     text-align: center;
     font-weight: 700;
+}
+div.floppy-buttons {
+    position: absolute;
+    bottom: 22px;
+    display: none;
+    margin: 0 auto;
+    opacity: 0.1;
+    transition: opacity 300ms;
+}
+div.floppy:hover > div.floppy-buttons {
+    display: block;
+    position: absolute;
+    opacity: 1;
 }

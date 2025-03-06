@@ -94,40 +94,78 @@
         </div>
         <div class="container">
             {% if user.is_authenticated%}
-                {% if editable %}
-                <form id="pomodoroForm" method="POST" action="{% url 'add' user.id %}">
-                    {% csrf_token %}
-                    {{form}}
-                    <button type="submit">Save</button>
-                </form>
-                {% else %}
-
                 {% if timers is None %}
-                <div>
-                    <h2>No timers yet...</h2>
-                </div>
-
+                    <div>
+                        <h2>No timers yet...</h2>
+                    </div>
                 {% else %}
-
-                {% for timer in timers %}
-                    {% if timer.uuid == user.id %}
-                        <div class="floppy" onclick="pushITimer('{{ timer.id }}')">
-                            <svg width="20vw" viewBox="0 0 882 882">
+                    {% for timer in timers %}
+                        {% if timer.uuid == user.id %}
+                            <div class="floppy" onclick="pushITimer('{{ timer.id }}')">
+                                <svg viewBox="0 0 882 882">
+                                    <path 
+                                        opacity="0.506" 
+                                        d="M826.875 753.946C826.875 783.383 786.221 811.615 713.855 832.43C641.49 853.245 543.341 864.938 441.001 864.938C338.661 864.938 240.513 853.245 168.147 832.43C95.7819 811.615 55.1274 783.383 55.1274 753.946C55.1274 724.509 95.7819 696.278 168.147 675.463C240.513 654.648 338.661 642.954 441.001 642.954C543.341 642.954 641.49 654.648 713.855 675.463C786.221 696.278 826.875 724.509 826.875 753.946Z" 
+                                        fill="url({% static 'focus_timer/svg/floppy.svg'%}#paint0_radial_202_248)"
+                                    />
+                                    <g filter="url({% static 'focus_timer/svg/floppy.svg'%}#filter0_i_202_248)">
+                                        <path 
+                                        d="M83.7532 65.562H798.357C809.198 65.562 817.908 74.2717 817.908 85.0946V779.026C817.908 789.868 809.18 798.577 798.357 798.577H120.503L64.2022 742.276V85.0946C64.1949 82.526 64.6958 79.9812 65.676 77.6069C66.6562 75.2326 68.0963 73.0757 69.9135 71.2602C71.7306 69.4447 73.889 68.0066 76.2642 67.0287C78.6394 66.0508 81.1846 65.5523 83.7532 65.562Z" 
+                                        fill="url({% static 'focus_timer/svg/floppy.svg'%}#back{{ timer.color }})"
+                                        />
+                                    </g>
+                                    <use href="{% static 'focus_timer/svg/floppy.svg'%}#floppy"></use>
+                                </svg>
+                                <div class="floppy-content">
+                                    <h2>{{ timer.title }}</h2>
+                                    <span id="minutes{{ timer.id }}">Focus: {{ timer.focus }} min</span><br>
+                                    <span id="seconds{{ timer.id }}">Rest: {{ timer.rest }} min</span><br>
+                                    <span id="initialFocus{{ timer.id }}" 
+                                            style="display: none;">{{ timer.focus }}</span>
+                                    <span id="initialRest{{ timer.id }}" 
+                                            style="display: none;">{{ timer.rest }}</span>
+                                </div>
+                                <div class="floppy-buttons">
+                                    <a href="/delete/{{ timer.id }}">
+                                        <button>Delete</button>
+                                    </a>
+                                </div>
+                            </div>
+                        {%endif%}
+                    {% endfor %}
+                    {% if editable %}
+                        <div class="floppy">
+                            <svg viewBox="0 0 882 882">
+                                <path 
+                                    opacity="0.506" 
+                                    d="M826.875 753.946C826.875 783.383 786.221 811.615 713.855 832.43C641.49 853.245 543.341 864.938 441.001 864.938C338.661 864.938 240.513 853.245 168.147 832.43C95.7819 811.615 55.1274 783.383 55.1274 753.946C55.1274 724.509 95.7819 696.278 168.147 675.463C240.513 654.648 338.661 642.954 441.001 642.954C543.341 642.954 641.49 654.648 713.855 675.463C786.221 696.278 826.875 724.509 826.875 753.946Z" 
+                                    fill="url({% static 'focus_timer/svg/floppy.svg'%}#paint0_radial_202_248)"
+                                />
+                                <g filter="url({% static 'focus_timer/svg/floppy.svg'%}#filter0_i_202_248)">
+                                    <path id="formBackground"
+                                    d="M83.7532 65.562H798.357C809.198 65.562 817.908 74.2717 817.908 85.0946V779.026C817.908 789.868 809.18 798.577 798.357 798.577H120.503L64.2022 742.276V85.0946C64.1949 82.526 64.6958 79.9812 65.676 77.6069C66.6562 75.2326 68.0963 73.0757 69.9135 71.2602C71.7306 69.4447 73.889 68.0066 76.2642 67.0287C78.6394 66.0508 81.1846 65.5523 83.7532 65.562Z" 
+                                    fill="url({% static 'focus_timer/svg/floppy.svg'%}#back0)"
+                                    />
+                                </g>
                                 <use href="{% static 'focus_timer/svg/floppy.svg'%}#floppy"></use>
-                                
                             </svg>
                             <div class="floppy-content">
-                                <h2>{{ timer.title }}</h2>
-                                <span id="minutes{{ timer.id }}">Focus: {{ timer.focus }} min</span><br>
-                                <span id="seconds{{ timer.id }}">Rest: {{ timer.rest }} min</span><br>
-                                <span id="initialFocus{{ timer.id }}" 
-                                        style="display: none;">{{ timer.focus }}</span>
-                                <span id="initialRest{{ timer.id }}" 
-                                        style="display: none;">{{ timer.rest }}</span>
+                                <form id="pomodoroForm" method="POST" action="{% url 'add' user.id %}">
+                                    {% csrf_token %}
+                                    {{form}}
+                                    <input type="button" id="colorButton" onclick="changeColor()" value="Color" class="button">
+                                    <button type="submit">Save</button>
+                                </form>
                             </div>
                         </div>
-                    {%endif%}
-                {% endfor %}
+                    {% else %}
+                        <div class="floppy">
+                            <a href="{% url 'add'  user.id %}">
+                                <svg viewBox="0 0 882 882">
+                                    <use href="{% static 'focus_timer/svg/floppy_new.svg'%}#floppy_new"></use>
+                                </svg>
+                            </a>
+                        </div>
                 {% endif %}
                 {% endif %}
         </div>
@@ -143,7 +181,9 @@
     <div class="navbar">
         <h1>FocusMii</h1>
         {% if user.is_authenticated %}
-        <a class="nav-link mx-3" href="{% url 'add'  user.id %}"><h2>New Timer</h2></a>
+            {% if timers is None %}
+                <a class="nav-link mx-3" href="{% url 'add'  user.id %}"><h2>New Timer</h2></a>
+            {% endif %}
         <div class="spacer"></div>
         <a class="signup" href="{% url 'logout' %}"><h2 class="signup">Logout</h2></a>
         {% else %}
