@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title id="title">Themes</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'focus_timer/icon/mainfavicon.png' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+        <link rel='stylesheet' href="{% static 'focus_timer/style.css'%}">
+        <script src="{% static 'focus_timer/app.js' %}"></script>
+        {% include 'theme_styler.html' %}
+    </head>
+    <body>
+    <div class="main">
+        <div class="container">
+            {% for theme in themes %}
+                <div class="floppy">
+                    <form method="POST" action="{% url 'themes_set' theme.id %}">
+                        {% csrf_token %}
+                        <button type="submit" style="all: unset;">
+                            <svg viewBox="0 0 882 882" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Static shadow path (leave untouched) -->
+                                <path 
+                                    opacity="0.506" 
+                                    d="M826.875 753.946C826.875 783.383 786.221 811.615 713.855 832.43C641.49 853.245 543.341 864.938 441.001 864.938C338.661 864.938 240.513 853.245 168.147 832.43C95.7819 811.615 55.1274 783.383 55.1274 753.946C55.1274 724.509 95.7819 696.278 168.147 675.463C240.513 654.648 338.661 642.954 441.001 642.954C543.341 642.954 641.49 654.648 713.855 675.463C786.221 696.278 826.875 724.509 826.875 753.946Z" 
+                                    fill="url({% static 'focus_timer/svg/floppy.svg' %}#paint0_radial_202_248)"
+                                />
+                        
+                                <!-- Theme-specific gradients and image fills -->
+                                <defs>
+                                    {% if theme.is_color_theme %}
+                                        {% with theme.color_list as colors %}
+                                            {% if colors|length > 1 %}
+                                                <linearGradient id="theme-gradient-{{ theme.id }}" x1="0%" y1="0%" x2="0%" y2="100%">
+                                                    {% for color in colors %}
+                                                        {% widthratio forloop.counter0 colors|length 100 as offset %}
+                                                        <stop offset="{{ offset }}%" stop-color="{{ color }}" />
+                                                    {% endfor %}
+                                                </linearGradient>
+                                            {% endif %}
+                                        {% endwith %}
+                                    {% elif theme.is_image_theme %}
+                                        <pattern id="theme-pattern-{{ theme.id }}" patternUnits="userSpaceOnUse" width="882" height="882">
+                                            <image href="{{ theme.image.url }}" x="0" y="0" width="882" height="882" preserveAspectRatio="xMidYMid slice" />
+                                        </pattern>
+                                    {% endif %}
+                                </defs>
+                        
+                                <!-- Main body fill -->
+                                <g filter="url({% static 'focus_timer/svg/floppy.svg' %}#filter0_i_202_248)">
+                                    <path 
+                                        d="M83.7532 65.562H798.357C809.198 65.562 817.908 74.2717 817.908 85.0946V779.026C817.908 789.868 809.18 798.577 798.357 798.577H120.503L64.2022 742.276V85.0946C64.1949 82.526 64.6958 79.9812 65.676 77.6069C66.6562 75.2326 68.0963 73.0757 69.9135 71.2602C71.7306 69.4447 73.889 68.0066 76.2642 67.0287C78.6394 66.0508 81.1846 65.5523 83.7532 65.562Z"
+                                        {% if theme.is_color_theme %}
+                                            {% with theme.color_list as colors %}
+                                                {% if colors|length > 1 %}
+                                                    fill="url(#theme-gradient-{{ theme.id }})"
+                                                {% else %}
+                                                    fill="{{ colors.0 }}"
+                                                {% endif %}
+                                            {% endwith %}
+                                        {% elif theme.is_image_theme %}
+                                            fill="url(#theme-pattern-{{ theme.id }})"
+                                        {% else %}
+                                            fill="url({% static 'focus_timer/svg/floppy.svg' %}#back4)"
+                                        {% endif %}
+                                    />
+                                </g>
+                        
+                                <!-- Floppy overlay -->
+                                <use href="{% static 'focus_timer/svg/floppy.svg' %}#floppy"></use>
+                            </svg>
+                        </button>
+                    </form>
+                
+                    <div class="floppy-content">
+                        <h2>{{ theme.title }}</h2>
+                    </div>
+                
+                    <div class="floppy-buttons">
+                        <form method="POST" action="{% url 'themes_delete' theme.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% if current_theme %}
+            <div class="floppy">
+                <form method="POST" action="{% url 'themes_default' %}">
+                    {% csrf_token %}
+                    <button type="submit" style="all: unset;">
+                        <svg viewBox="0 0 882 882">
+                            <use href="{% static 'focus_timer/svg/floppy_theme_default.svg'%}#floppy_theme_default"></use>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+            {% endif %}
+
+            {% if editable %}
+                <div class="floppy">    
+                    <svg viewBox="0 0 882 882">
+                        <path 
+                            opacity="0.506" 
+                            d="M826.875 753.946C826.875 783.383 786.221 811.615 713.855 832.43C641.49 853.245 543.341 864.938 441.001 864.938C338.661 864.938 240.513 853.245 168.147 832.43C95.7819 811.615 55.1274 783.383 55.1274 753.946C55.1274 724.509 95.7819 696.278 168.147 675.463C240.513 654.648 338.661 642.954 441.001 642.954C543.341 642.954 641.49 654.648 713.855 675.463C786.221 696.278 826.875 724.509 826.875 753.946Z" 
+                            fill="url({% static 'focus_timer/svg/floppy.svg'%}#paint0_radial_202_248)"
+                        />
+                        <g filter="url({% static 'focus_timer/svg/floppy.svg'%}#filter0_i_202_248)">
+                            <path id="formBackground"
+                            d="M83.7532 65.562H798.357C809.198 65.562 817.908 74.2717 817.908 85.0946V779.026C817.908 789.868 809.18 798.577 798.357 798.577H120.503L64.2022 742.276V85.0946C64.1949 82.526 64.6958 79.9812 65.676 77.6069C66.6562 75.2326 68.0963 73.0757 69.9135 71.2602C71.7306 69.4447 73.889 68.0066 76.2642 67.0287C78.6394 66.0508 81.1846 65.5523 83.7532 65.562Z" 
+                            fill="url({% static 'focus_timer/svg/floppy.svg'%}#back4)"
+                            />
+                        </g>
+                        <use href="{% static 'focus_timer/svg/floppy.svg'%}#floppy"></use>
+                    </svg>
+                    <div class="floppy-content">
+                        <form id="themeForm" method="POST" action="{% url 'themes_add' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{form.as_p}}
+                            <button type="submit">Save</button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <div class="floppy">
+                    <a href="/themes/add/">
+                        <svg viewBox="0 0 882 882">
+                            <use href="{% static 'focus_timer/svg/floppy_theme_new.svg'%}#floppy_theme_new"></use>
+                        </svg>
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="navbar">
+        <a href="{% url 'pomodoro_timer' %}"><h1>FocusMii</h1></a>
+        {% if user.is_authenticated %}
+        <h2 class="selected">Themes</h2>
+        <div class="spacer"></div>
+        <a class="signup" href="{% url 'logout' %}"><h2 class="signup">Logout</h2></a>
+        {% else %}
+        <div class="spacer"></div>
+        <a href="{% url 'login' %}"><h2 class="signup">Login</h2></a>
+        {% endif %}
+        <svg height="42px" id="account"><use href="{% static 'focus_timer/svg/account.svg'%}#account"></use></svg>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+            crossorigin="anonymous"></script>
+  </body>
+</html>

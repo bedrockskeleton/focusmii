@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#+7k_ul3537l9=92r2@ne54n-%#9#5j0jx6hgohn1dm=&m0@7l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','127.0.0.1:8000']
 
 
 # Application definition
@@ -102,6 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'focus_timer.CustomUser'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -130,3 +131,5 @@ LOGIN_REDIRECT_URL = '/home/'  # Redirect to home page after login
 LOGIN_URL = '/login/'  # Ensure this matches the URL of your login page
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'

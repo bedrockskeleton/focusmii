@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
         <link rel='stylesheet' href="{% static 'focus_timer/style.css'%}">
         <script src="{% static 'focus_timer/app.js' %}"></script>
+        {% include 'theme_styler.html' %}
     </head>
     <body>
     <div class="main">
@@ -179,8 +180,9 @@
         </div>
     </div>
     <div class="navbar">
-        <h1>FocusMii</h1>
+        <h1 class="selected">FocusMii</h1>
         {% if user.is_authenticated %}
+        <a href="{% url 'themes' %}"><h2>Themes</h2></a>
             {% if timers is None %}
                 <a class="nav-link mx-3" href="{% url 'add'  user.id %}"><h2>New Timer</h2></a>
             {% endif %}

@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import CustomUser
+from django import forms
+from .models import CustomUser, Timers, Themes
 
 class RegistrationForm(UserCreationForm):
     class Meta:
@@ -10,9 +11,6 @@ class LoginForm(AuthenticationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'password']
-
-from django import forms
-from .models import Timers
 
 class PomodoroForm(forms.ModelForm):
     class Meta:
@@ -38,4 +36,24 @@ class PomodoroForm(forms.ModelForm):
         if (focus + rest) > 60:
             raise forms.ValidationError("Total time cannot exceed 60 minutes.")
         '''
+        return cleaned_data
+
+class ThemeForm(forms.ModelForm):
+    class Meta:
+        model = Themes
+        fields = ['title', 'color1', 'color2', 'color3', 'image']
+        widgets = {
+            'title': forms.TextInput(attrs={'maxlength': 14, 'required': 'required'}),
+            'color1': forms.TextInput(attrs={'type': 'color'}),
+            'color2': forms.TextInput(attrs={'type': 'color'}),
+            'color3': forms.TextInput(attrs={'type': 'color'}),
+            'image': forms.ClearableFileInput()
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        for field in ['color1', 'color2', 'color3']:
+            value = cleaned_data.get(field)
+            if value:
+                cleaned_data[field] = value.strip()
         return cleaned_data

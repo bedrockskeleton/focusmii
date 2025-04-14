@@ -8,4 +8,11 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('add/<int:id>', views.add, name="add"),
     path('delete/<str:id>/', views.delete, name="delete"),
+    # Theme URLs
+    path('themes/', views.themes, name='themes'),
+    path('themes/add/', views.themes_add, name='themes_add'),
+    path('themes/edit/<int:theme_id>', views.themes_edit, name='themes_edit'),
+    path('themes/delete/<int:theme_id>/', views.themes_delete, name='themes_delete'),
+    path('themes/set/<int:theme_id>/', views.themes_set, name='themes_set'),
+    path('themes/default/', views.themes_default, name='themes_default')
 ]

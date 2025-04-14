@@ -1,0 +1,24 @@
+{% if current_theme %}
+    <style>
+        body {
+            {% if current_theme.is_color_theme %}
+                {% with current_theme.color_list as colors %}
+                    {% if colors|length == 1 %}
+                        background-color: {{ colors.0 }};
+                    {% else %}
+                        background-image: linear-gradient(to bottom, 
+                            {% for c in colors %}
+                                {{ c }}{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        );
+                    {% endif %}
+                {% endwith %}
+            {% elif current_theme.is_image_theme %}
+                background-image: url('{{ current_theme.image.url }}');
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            {% endif %}
+        }
+    </style>
+{% endif %}
