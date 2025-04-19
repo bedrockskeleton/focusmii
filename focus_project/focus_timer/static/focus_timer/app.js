@@ -6,6 +6,7 @@ let pushedFocus = 25;
 let pushedRest = 5;
 let mainIsTimerRunning = false;
 let mainIsFocus = true
+
 // General variables
 const alarm = new Audio('/static/focus_timer/sound/alarm.wav'); // Play when timer complete
 const rest = new Audio('/static/focus_timer/sound/rest.wav'); // Play when time for rest
@@ -144,4 +145,12 @@ function changeColor () {
     console.log(backString.slice(0, pound).concat("#back",color,")"));
     colorForm.value = color;
     formBackground.setAttribute("fill", backString.slice(0, pound).concat("#back",color,")"))
+}
+
+const evilButtons = document.getElementsByClassName("evil");
+for (let btn of evilButtons) {
+    btn.addEventListener("click", function () {
+        alarm.play();
+        console.log("button pressed")
+    });
 }

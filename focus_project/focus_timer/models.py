@@ -9,7 +9,14 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 class CustomUser(AbstractUser):
-    pass
+    email = models.EmailField(unique=True)
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']  # username still required unless you remove it
+
+    def __str__(self):
+        return self.email
+    
 User = get_user_model()
 
 class UserProfile(models.Model):

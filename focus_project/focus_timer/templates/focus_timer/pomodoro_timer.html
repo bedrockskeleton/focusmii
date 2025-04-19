@@ -173,21 +173,23 @@
             {% else %}
             <div class="intro">
                 <p>
-                    FocusMii is a pomodoro timer that features nostalgic skeumorphic design and sounds. The large analog timer tracks your focus time in green and your rest time in yellow. You'll hear a <i>*whoom*</i> when its time to rest, and a <i>*beep*</i> when the timer is complete. <a href="{% url 'login' %}" class="signup">Login</a> to create and manage custom timers. Created by Brock Skelton for CSC V.
+                    FocusMii is a pomodoro timer that features nostalgic skeumorphic design and sounds. The large analog timer tracks your focus time in green and your rest time in yellow.<br><br>
+                    You'll hear a <i>*whoom*</i> when its time to rest, and a <i>*beep*</i> when the timer is complete.<br><br>
+                    <a href="{% url 'login' %}" class="signup">Login</a> to manage custom timers and themes. Created by Brock Skelton for CSC V and VI.
                 </p>
             </div>
             {% endif %}
         </div>
     </div>
     <div class="navbar">
-        <h1 class="selected">FocusMii</h1>
+        <h1 class="bold">FocusMii</h1>
         {% if user.is_authenticated %}
         <a href="{% url 'themes' %}"><h2>Themes</h2></a>
             {% if timers is None %}
                 <a class="nav-link mx-3" href="{% url 'add'  user.id %}"><h2>New Timer</h2></a>
             {% endif %}
         <div class="spacer"></div>
-        <a class="signup" href="{% url 'logout' %}"><h2 class="signup">Logout</h2></a>
+        <a class="signup" href="{% url 'profile' %}"><h2 class="signup">Profile</h2></a>
         {% else %}
         <div class="spacer"></div>
         <a href="{% url 'login' %}"><h2 class="signup">Login</h2></a>

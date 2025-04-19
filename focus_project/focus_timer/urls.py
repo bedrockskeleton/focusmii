@@ -8,6 +8,8 @@ urlpatterns = [
     path('logout/', views.logout, name='logout'),
     path('add/<int:id>', views.add, name="add"),
     path('delete/<str:id>/', views.delete, name="delete"),
+    # Profile Management
+    path('profile', views.profile, name='profile'),
     # Theme URLs
     path('themes/', views.themes, name='themes'),
     path('themes/add/', views.themes_add, name='themes_add'),

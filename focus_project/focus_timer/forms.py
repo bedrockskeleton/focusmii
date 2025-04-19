@@ -1,16 +1,17 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, PasswordChangeForm
 from django import forms
 from .models import CustomUser, Timers, Themes
+from django.contrib.auth import get_user_model
 
 class RegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'password1', 'password2']
+        fields = ['username', 'email', 'password']
 
 class LoginForm(AuthenticationForm):
     class Meta:
         model = CustomUser
-        fields = ['username', 'password']
+        fields = ['email', 'password']
 
 class PomodoroForm(forms.ModelForm):
     class Meta:
@@ -31,17 +32,47 @@ class PomodoroForm(forms.ModelForm):
 
         if focus < 0 or rest < 0:
             raise forms.ValidationError("Time must be non-negative.")
-        '''
-        # This if statement prevents timers longer than 60 minutes from being created
-        if (focus + rest) > 60:
-            raise forms.ValidationError("Total time cannot exceed 60 minutes.")
-        '''
+        
         return cleaned_data
+    
+# Profile Forms
+
+User = get_user_model()
+
+class CustomUsernameChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username']
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control'})
+        }
+        
+class CustomEmailChangeForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['email']
+        widgets = {
+            'email': forms.EmailInput(attrs={'class': 'form-control'})
+        }
+
+class CustomPasswordChangeForm(PasswordChangeForm):
+    def __init__(self, *args, **kwargs):
+        super(CustomPasswordChangeForm, self).__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label
+
+# Theme Forms
 
 class ThemeForm(forms.ModelForm):
     class Meta:
         model = Themes
         fields = ['title', 'color1', 'color2', 'color3', 'image']
+        labels = {'title':'Title',
+                  'color1':'',
+                  'color2':'',
+                  'color3':'',
+                  'image':'Image'}
         widgets = {
             'title': forms.TextInput(attrs={'maxlength': 14, 'required': 'required'}),
             'color1': forms.TextInput(attrs={'type': 'color'}),

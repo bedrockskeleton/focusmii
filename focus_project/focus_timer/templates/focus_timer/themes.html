@@ -127,7 +127,7 @@
                 </div>
             {% else %}
                 <div class="floppy">
-                    <a href="/themes/add/">
+                    <a href="{% url 'themes_add' %}">
                         <svg viewBox="0 0 882 882">
                             <use href="{% static 'focus_timer/svg/floppy_theme_new.svg'%}#floppy_theme_new"></use>
                         </svg>
@@ -139,9 +139,9 @@
     <div class="navbar">
         <a href="{% url 'pomodoro_timer' %}"><h1>FocusMii</h1></a>
         {% if user.is_authenticated %}
-        <h2 class="selected">Themes</h2>
+        <h2 class="bold">Themes</h2>
         <div class="spacer"></div>
-        <a class="signup" href="{% url 'logout' %}"><h2 class="signup">Logout</h2></a>
+        <a class="signup" href="{% url 'profile' %}"><h2 class="signup">Profile</h2></a>
         {% else %}
         <div class="spacer"></div>
         <a href="{% url 'login' %}"><h2 class="signup">Login</h2></a>
