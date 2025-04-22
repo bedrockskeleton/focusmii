@@ -172,10 +172,10 @@ def profile(request):
 # Views for themes
 
 def themes(request):
-    themes = request.user.themes.all()
-    form = ThemeForm()
-    theme = get_selected_theme(request.user)
     if request.user.is_authenticated:
+        themes = request.user.themes.all()
+        form = ThemeForm()
+        theme = get_selected_theme(request.user)
         return render(request, 'themes.html', {
             'themes': themes,
             'form': form,
@@ -226,7 +226,10 @@ def themes_edit(request, theme_id):
         else:
             form = ThemeForm(instance=theme)
 
-        return render(request, 'edit_theme.html', {'form': form, 'theme': theme})
+        return render(request, 'edit_theme.html', {
+            'form': form,
+            'theme': theme
+            })
     else:
         return redirect('themes')
 
@@ -261,3 +264,15 @@ def themes_default(request):
         return redirect('themes')
     else:
         return redirect('pomodoro_timer')
+    
+# Views for Calculations
+
+def calculations(request):
+    user = request.user
+    if user.is_authenticated:
+        current_theme = get_selected_theme(user)
+    else:
+        current_theme = None
+    return render(request, 'calculations.html', {
+        'current_theme': current_theme
+    })

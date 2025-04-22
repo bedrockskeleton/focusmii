@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Calculations</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'focus_timer/icon/calcfavicon.png' %}">
+        <link rel="stylesheet" href="{% static 'focus_timer/style.css'%}">
+        <link rel="stylesheet" href="{% static 'focus_timer/calculations_style.css'%}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+        {% include 'theme_styler.html' %}
+    </head>
+    <body>
+        <div class="main">
+            <div id="left">
+                {% if user.is_authenticated %}
+                    <p id="intro"><b>Calculations</b> are here to kickstart your brain and get you ready to focus.<br><br>
+                        In <b>Normal</b> mode, solve math problems as fast as possible by typing the answer.<br><br>
+                        With <b>1-Back</b>, memorize the answer to a given problem.
+                        When the next one is shown, enter the answer you memorized!<br><br>
+                        <b>1-Back</b> only requires you to remember <b>1</b> answer.
+                        Once you master this, you can move on to 2-Back, 3-Back, and even 4-Back!
+                    </p>
+                    <div id="difficultySelector" class="selector">
+                        <span class="arrow" id="arrowLeft">&#9664;</span>
+                        <span class="label" id="difficultyLabel">Normal</span>
+                        <span class="arrow" id="arrowRight">&#9654;</span>
+                    </div>
+                    <div id="countSelector" class="selector">
+                        <span class="arrow" id="countArrowLeft">&#9664;</span>
+                        <span class="label" id="countLabel">25</span>
+                        <span class="arrow" id="countArrowRight">&#9654;</span>
+                    </div>
+                {% else %}
+                    <p id="intro"><b>Calculations</b> are here to kickstart your brain and get you ready to focus.<br><br>
+                        In <b>Normal</b> mode, solve math problems as fast as possible by typing the answer.<br><br>
+                        <a href="{% url 'login' %}" class="signup">Login</a> to try other modes like <b>1-Back</b>, <b>2-Back</b>, <b>3-Back</b>, and <b>4-Back</b>; each one is more challenging than the last.
+                        You'll also be able to change the amount of problems!
+                    </p>
+                    <div id="difficultySelector" class="selector">
+                        <span class="label" id="difficultyLabel">Normal</span>
+                    </div>
+                    <div id="countSelector" class="selector">
+                        <span class="label" id="countLabel">25</span>
+                    </div>
+                {% endif %}
+                <div class="selector" style="display: none;">
+                    <span class="label" id="score"></span>
+                </div>
+                <div class="selector" style="display: none;">
+                    <span class="label" id="time"></span>
+                </div>
+                <button onclick="start()" id="startButton" class="start">Start</button>
+                <div class="start">
+                    <a href="{% url 'calculations' %}"><button class="start evil" id="endButton" style="display: none;">Restart</button></a>
+                </div>
+                <p id="encouragement" style="display: none;">You scored 85% or more! You should <a href="{% url 'pomodoro_timer' %}" class="signup">Start Focusing!</a></p>
+            </div>
+            <div id="right">
+            </div>
+        </div>
+        <div class="navbar">
+            <a href="{% url 'pomodoro_timer' %}"><h1>FocusMii</h1></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'themes' %}"><h2>Themes</h2></a>
+            <h2 class="bold">Calculations</h2>
+            <div class="spacer"></div>
+            <a class="signup" href="{% url 'profile' %}"><h2 class="signup">Profile</h2></a>
+            {% else %}
+            <h2 class="bold">Calculations</h2>
+            <div class="spacer"></div>
+            <a href="{% url 'login' %}"><h2 class="signup">Login</h2></a>
+            {% endif %}
+            <svg height="42px" id="account"><use href="{% static 'focus_timer/svg/account.svg'%}#account"></use></svg>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
+                crossorigin="anonymous">
+        </script>
+        <script src="{% static 'focus_timer/calculations.js' %}"></script>
+    </body>
+</html>

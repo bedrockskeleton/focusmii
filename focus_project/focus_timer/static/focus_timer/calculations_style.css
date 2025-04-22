@@ -1,0 +1,191 @@
+.main {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0;
+    padding: 0;
+}
+.mainShrunk {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-columns: max-content auto;
+    column-gap: 0;
+    padding: 0;
+}
+.mainShrunk > div > * {
+    margin-left: 20px;
+}
+
+div#left {
+    grid-column: 1;
+}
+div#left p {
+    margin: 20px 20px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: inset 0px 5px 5px white,
+                0px 5px 10px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 95%, rgba(255, 255, 255, 0.35) 100%),
+                linear-gradient(180deg, rgba(174, 174, 174, 0.64) 0%, rgba(245, 245, 245, 0.64) 100%);
+}
+div#left p a {
+    font-family: 'NanumGothic';
+}
+
+/* RIGHT side */
+div#right {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+}
+
+/* Answer input */
+input#answer {
+    all: unset;
+    font-weight: 700;
+    font-size: 60pt;
+    height: 1.2ch;
+    width: 1ch;
+    border: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.start,
+.start * {
+    font-size: 24pt;
+    font-weight: 700;
+}
+
+.start {
+    width: fit-content;
+    border: none;
+}
+
+/* Problem parts */
+div#right div {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 60pt;
+    height: 1.2ch;
+    width: fit-content;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: inset 0px 5px 5px white,
+                0px 5px 10px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 95%, rgba(255, 255, 255, 0.35) 100%),
+                linear-gradient(180deg, rgba(174, 174, 174, 0.64) 0%, rgba(245, 245, 245, 0.64) 100%);
+}
+div#right div.correct p.result{
+    color: rgb(66, 128, 66);
+}
+div#right div.incorrect p.result{
+    color: rgb(128, 66, 66)
+}
+
+div#right div * {
+    font-family: "Courier Prime", serif;
+}
+p.id {
+    width: 2ch;
+    font-size: 20pt;
+    font-weight: 400;
+    color: grey;
+    margin: 0 1ch;
+}
+p.num,
+p.result {
+    font-size: 60pt;
+}
+p.op {
+    font-size: 40pt;
+    width: 1ch;
+    margin: 0 1ch;
+}
+
+@keyframes growIn {
+    0% {
+        transform: scaleY(0);
+        height: 0px;
+        opacity: 0;
+    }
+    100% {
+        transform: scaleY(1);
+        height: 1.2ch;
+        opacity: 1;
+    }
+}
+
+.problem.animate-in {
+    animation: growIn 0.2s ease-out;
+    transform-origin: top;
+}
+
+
+/* Selector elements */
+.selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28pt;
+    font-weight: 700;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    width: fit-content;
+    margin: 1rem auto;
+    box-shadow: inset 0px 5px 5px white,
+                0px 5px 10px rgba(0, 0, 0, 0.35);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 95%, rgba(255, 255, 255, 0.35) 100%),
+                linear-gradient(180deg, rgba(174, 174, 174, 0.64) 0%, rgba(245, 245, 245, 0.64) 100%);
+    user-select: none;
+    cursor: pointer;
+    transition: box-shadow 300ms, margin 300ms, padding 300ms;
+}
+.selector:hover {
+    box-shadow: inset 0px 7px 5px white, 0px 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.selector .arrow {
+    padding: 0 1rem;
+    cursor: pointer;
+    color: #737373;
+    transition: color 0.2s;
+}
+
+.selector .arrow:hover {
+    color: #505050;
+}
+
+.selector .label {
+    text-align: center;
+    min-width: 4ch;
+    padding: 0 1rem;
+    background: linear-gradient(180deg, #505050 0%, #737373 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem auto;
+}

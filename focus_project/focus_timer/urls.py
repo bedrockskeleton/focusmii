@@ -16,5 +16,7 @@ urlpatterns = [
     path('themes/edit/<int:theme_id>', views.themes_edit, name='themes_edit'),
     path('themes/delete/<int:theme_id>/', views.themes_delete, name='themes_delete'),
     path('themes/set/<int:theme_id>/', views.themes_set, name='themes_set'),
-    path('themes/default/', views.themes_default, name='themes_default')
+    path('themes/default/', views.themes_default, name='themes_default'),
+    # Calcuation URLs
+    path('calculations/', views.calculations, name='calculations'),
 ]

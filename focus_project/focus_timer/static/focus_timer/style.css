@@ -175,6 +175,10 @@ h2 {
 .bold {
     font-weight: 700;
 }
+b {
+    font-family: 'NanumGothic';
+    color: black;
+}
 
 a {
     text-decoration: none;

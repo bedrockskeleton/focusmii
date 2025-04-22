@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title id="title">Themes</title>
+        <title id="title">{{ user.username }}'s Info</title>
         <link rel="shortcut icon" type="image/x-icon" href="{% static 'focus_timer/icon/accountfavicon.png' %}">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -92,6 +92,7 @@
         <a href="{% url 'pomodoro_timer' %}"><h1>FocusMii</h1></a>
         {% if user.is_authenticated %}
         <a href="{% url 'themes' %}"><h2>Themes</h2></a>
+        <a href="{% url 'calculations' %}"><h2>Calculations</h2></a>
         <div class="spacer"></div>
         <a class="signup" href="{% url 'logout' %}"><h2 class="signup">Logout</h2></a>
         {% else %}
