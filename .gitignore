@@ -1,0 +1,4 @@
+__pycache__/
+.venv/
+uploads/themes/*
+db.sqlite3
