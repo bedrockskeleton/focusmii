@@ -2,4 +2,4 @@ __pycache__/
 .venv/
 uploads/themes/*
 db.sqlite3
-static_collected/
+static_collected
